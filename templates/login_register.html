@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Login & Register</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .dark-mode {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .form-container {
+            display: none;
+        }
+        .form-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">BlogSite</a>
+        <div class="ml-auto">
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggleMode">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Welcome</h2>
+        <div class="text-center mb-4">
+            <button class="btn btn-primary" id="showLogin">Login</button>
+            <button class="btn btn-secondary" id="showRegister">Register</button>
+        </div>
+
+        <div class="form-container active" id="loginForm">
+            <h3>Login</h3>
+            <form>
+                <div class="form-group">
+                    <label for="loginEmail">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+
+        <div class="form-container" id="registerForm">
+            <h3>Register</h3>
+            <form>
+                <div class="form-group">
+                    <label for="registerName">Name</label>
+                    <input type="text" class="form-control" id="registerName" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email address</label>
+                    <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" class="form-control" id="registerPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('toggleMode').addEventListener('change', function() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.add('active');
+            document.getElementById('registerForm').classList.remove('active');
+        });
+
+        document.getElementById('showRegister').addEventListener('click', function() {
+            document.getElementById('registerForm').classList.add('active');
+            document.getElementById('loginForm').classList.remove('active');
+        });
+    </script>
+</body>
+</html>

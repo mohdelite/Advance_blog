@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Blog List</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .dark-mode {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+        .card {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode .card {
+            background-color: #f8f9fa;
+            color: #000;
+        }
+        .dark-mode .card {
+            background-color: #495057;
+            color: #ffffff;
+        }
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .card-title {
+            font-size: 1.25rem;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">BlogSite</a>
+        <div class="ml-auto">
+            <label class="toggle-switch">
+                <input type="checkbox" id="toggleMode">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Blog List</h1>
+        <div class="row">
+            <!-- Blog Card 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="blog-image1.jpg" class="card-img-top" alt="Blog Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Blog Title 1</h5>
+                        <p class="card-text">An insightful description of the first blog post that engages the reader.</p>
+                        <a href="single-blog.html" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Card 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="blog-image2.jpg" class="card-img-top" alt="Blog Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Blog Title 2</h5>
+                        <p class="card-text">A brief overview of the second blog post that provides valuable insights.</p>
+                        <a href="single-blog.html" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Blog Card 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="blog-image3.jpg" class="card-img-top" alt="Blog Image 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Blog Title 3</h5>
+                        <p class="card-text">An engaging description of the third blog post that draws the reader in.</p>
+                        <a href="single-blog.html" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more blog cards as needed -->
+        </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('toggleMode').addEventListener('change', function() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
+        });
+    </script>
+</body>
+</html>
