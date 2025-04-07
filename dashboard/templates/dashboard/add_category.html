@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>افزودن دسته‌بندی</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- نمایش فیلدهای فرم -->
+        <button type="submit" class="btn btn-primary">ذخیره دسته‌بندی</button>
+    </form>
+    <a href="{% url 'dashboard:view' %}" class="btn btn-secondary mt-3">بازگشت به داشبورد</a>
+{% endblock %}

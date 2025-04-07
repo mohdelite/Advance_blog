@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>حذف پست: {{ post.title }}</h1>
+    <p>آیا مطمئن هستید که می‌خواهید این پست را حذف کنید؟</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">تأیید حذف</button>
+        <a href="{% url 'dashboard:view' %}" class="btn btn-secondary">انصراف</a>
+    </form>
+{% endblock %}

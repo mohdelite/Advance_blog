@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>مدیریت دسته‌بندی‌ها</h1>
+    <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#addCategoryModal">اضافه کردن دسته‌بندی</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>نام</th>
+                <th>عملیات</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{% url 'dashboard:edit_category' category.id %}" class="btn btn-warning btn-sm">ویرایش</a>
+                        <form action="{% url 'dashboard:delete_category' category.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">حذف</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}وب سایت خبری{% endblock %}
+{% load jalali_filters %}
+
+{% block content %}
+<div class="row">
+  
+  <!-- نوار کناری چپ برای اخبار محبوب‌ترین -->
+  <div class="col-md-2">
+    <h4>محبوب‌ترین‌ها ❤️</h4>
+    <ul class="list-group">
+      {% for post in most_liked_posts %}
+      <li class="list-group-item">
+        <a href="{% url 'blog:detail' post.id %}">
+          <strong>{{ post.title }}</strong><br>
+          <small>{{ post.nlikes }} لایک</small>
+        </a>
+      </li>
+    {% empty %}
+      <li class="list-group-item">مقاله‌های محبوبی موجود نیست.</li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  <!-- بخش اخبار اصلی -->
+  <div class="col-md-8">
+
+<div class="container mb-4">
+  <h2 class="text-center mb-4">دسته‌بندی‌ها</h2>
+  <hr style="border: 1px solid #ccc; margin-bottom: 20px;">
+  <div class="row">
+    {% for category in categories %}
+      <div class="col-12 col-md-4 mb-3">
+        <div class="category-box" style="background-color: #f8f9fa; border-radius: 5px; padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+          <h5>{{ category.name }}</h5>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<hr style="border: 1px solid #ccc; margin-bottom: 20px;">
+<h4>اخبار فرهنگی</h4>
+{% for post in posts_cultural %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار ورزشی</h4>
+{% for post in posts_sports %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار اجتماعی</h4>
+{% for post in posts_social %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار اقتصادی</h4>
+{% for post in posts_economic %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار سیاسی</h4>
+{% for post in posts_political %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار علمی</h4>
+{% for post in posts_scientific %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+<h4>اخبار هنری</h4>
+{% for post in posts_artistic %}
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ post.thumbnail.url }}" class="card-img" alt="{{ post.title }}">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text"><strong>منتشر شده در:</strong> {{ post.publish_date | to_jalali }}</p>
+          <p class="card-text"><strong>نویسنده:</strong> {{ post.author.username }}</p>
+          <p class="card-text">{{ post.content|slice:":400" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p>اخباری در این دسته موجود نیست.</p>
+{% endfor %}
+
+  </div>
+
+  <!-- نوار کناری راست برای اخبار پر بازدید -->
+  <div class="col-md-2">
+    <h4>بیشترین بازدید 🔥</h4>
+    <ul class="list-group">
+      {% for post in most_viewed_posts %}
+        <li class="list-group-item">
+          <a href="{% url 'blog:detail' post.id %}">
+          <strong>{{ post.title }}</strong><br>
+          <small>{{ post.nview }} بازدید</small>
+        </li>
+      {% empty %}
+        <li class="list-group-item">مقاله‌های پر بازدیدی موجود نیست.</li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+</div>
+{% endblock %}

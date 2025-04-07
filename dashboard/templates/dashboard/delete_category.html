@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>حذف دسته‌بندی: {{ category.name }}</h1>
+    <p>آیا مطمئن هستید که می‌خواهید این دسته‌بندی را حذف کنید؟</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">تأیید حذف</button>
+        <a href="{% url 'dashboard:manage_categories' %}" class="btn btn-secondary">انصراف</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">افزودن پست</h1>
+    
+    <!-- نمایش پیام‌های موفقیت -->
+    {% if messages %}
+        <div class="alert alert-success">
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+        
+        <!-- نمایش خطاهای فرم -->
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">{{ form.title.label }}</label>
+            <input type="text" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" 
+                   class="form-control" value="{{ form.title.value|default:'' }}" required>
+            <div class="invalid-feedback">لطفاً عنوان را وارد کنید.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
+            <select name="{{ form.category.name }}" id="{{ form.category.id_for_label }}" 
+                    class="form-control" required>
+                {% for choice in form.category.field.choices %}
+                    <option value="{{ choice.0 }}" {% if choice.0 == form.category.value %}selected{% endif %}>
+                        {{ choice.1 }}
+                    </option>
+                {% endfor %}
+            </select>
+            <div class="invalid-feedback">لطفاً یک دسته‌بندی انتخاب کنید.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="publishDate">تاریخ انتشار</label>
+            <input type="date" class="form-control" id="publishDate" name="publish_date" required>
+            <div class="invalid-feedback">لطفاً تاریخ انتشار را انتخاب کنید.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}">{{ form.content.label }}</label>
+            <textarea name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" 
+                      class="form-control" rows="5" required>{{ form.content.value|default:'' }}</textarea>
+            <div class="invalid-feedback">لطفاً محتوای پست را وارد کنید.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.thumbnail.id_for_label }}">{{ form.thumbnail.label }}</label>
+            <input type="file" name="{{ form.thumbnail.name }}" id="{{ form.thumbnail.id_for_label }}" 
+                   class="form-control" accept="image/*" required>
+            <div class="invalid-feedback">لطفاً یک تصویر بند انگشتی بارگذاری کنید.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">ایجاد پست</button>
+        <a href="{% url 'dashboard:view' %}" class="btn btn-secondary mt-3">بازگشت به داشبورد</a>
+    </form>
+</div>
+{% endblock %}
